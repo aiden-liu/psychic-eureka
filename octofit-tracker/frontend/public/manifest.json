@@ -1,0 +1,15 @@
+{
+  "short_name": "OctoFit",
+  "name": "OctoFit Tracker",
+  "icons": [
+    {
+      "src": "octofitapp-small.png",
+      "sizes": "320x301",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0b1f3a",
+  "background_color": "#f4f7ff"
+}
