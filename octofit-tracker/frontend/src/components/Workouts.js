@@ -117,4 +117,3 @@ const Workouts = () => {
 };
 
 export default Workouts;
-// -8000.app.github.dev/api/workouts/
