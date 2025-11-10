@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import RedirectView
 from rest_framework import routers
 from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet, WorkoutViewSet, api_root
 import os
@@ -28,17 +29,15 @@ router.register(r'workouts', WorkoutViewSet, basename='workout')
 
 codespace_name = os.environ.get('CODESPACE_NAME')
 if codespace_name:
-     base_url = f"https://{codespace_name}-8000.app.github.dev"
+    base_url = f"https://{codespace_name}-8000.app.github.dev"
 else:
-     base_url = "http://localhost:8000"
+    base_url = "http://localhost:8000"
 
-urlpatterns = [
-     path('admin/', admin.site.urls),
-     path('api/', api_root, name='api-root'),
-     path('api/', include(router.urls)),
-     path('', api_root),
-]
+api_base_url = f"{base_url}/api/"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api_root, name='api-root'),
+    path('api/', include(router.urls)),
+    path('', RedirectView.as_view(url=api_base_url, permanent=False)),
 ]
